@@ -1,26 +1,34 @@
 package org.jakemarotta.imageprocessingservice.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+
+import java.util.UUID;
 
 @Entity
+@Table(name = "user_image")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ImageEntity {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private String originalFilename;
+    private String type;
 
-    private String storagePath;
+    private String url;
 
-    private String contentType;
+    private String fileName;
 
-    private long size;
+    private Long fileSize;
 
-    private LocalDateTime createdAt;
 }
